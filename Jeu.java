@@ -37,7 +37,7 @@ public class Jeu {
 				joueur.afficherMain();
 			}
 		}
-
+		
 		Couleur couleuratout = tourChoixAtout();
 		System.out.println(couleuratout);
 		distribuerApresAtout();
@@ -49,7 +49,8 @@ public class Jeu {
 		}
 
 	}
-
+	
+	
 	public Couleur tourChoixAtout() {
 		Joueur joueurChoix = joueurAQuiDistribuer;
 		System.out.println("La retourne : " + paquetDeCarte.get(0));
@@ -139,6 +140,7 @@ public class Jeu {
 	public void AfficherPaquetDeCarte() {
 		for (Carte carte : paquetDeCarte) {
 			System.out.println(carte);
+			System.out.println("salut");
 		}
 	}
 
