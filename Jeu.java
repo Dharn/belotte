@@ -30,29 +30,54 @@ public class Jeu {
 		joueurAQuiDistribuer = e1.getListeJoueur().get(0);
 		preparerCartes();
 		melangerPaquetDeCarte();
-		distribuerCinqCarte();
 
-		for (Equipe equipe : equipes) {
-			for (Joueur joueur : equipe.getListeJoueur()) {
-				joueur.afficherMain();
+		int temp =0;
+		while (equipes.get(0).getPoints()<1000 || equipes.get(1).getPoints()<1000) { //fin du jeu apres 1000 points
+			System.out.println("tour "+temp);
+			temp++;
+			boolean atoutEstPrit=false;
+			Couleur couleurAtout=null;
+			while (!atoutEstPrit) { // tant que l'atout n'est pas prit, redistribution
+				distribuerCinqCarte();
+				for (Equipe equipe : equipes) {
+					for (Joueur joueur : equipe.getListeJoueur()) {
+						joueur.afficherMain();
+					}
+				}
+				
+				couleurAtout = tourChoixAtout();
+				if (couleurAtout != null) { // si atout prit, fin du while
+					System.out.println(couleurAtout);
+					atoutEstPrit =true;
+				}
+			}
+			
+			Tour nouveauTour = new Tour(couleurAtout, paquetDeCarte, equipes, joueurAQuiDistribuer);
+			
+			
+			for (Equipe equipe : equipes) {
+				for (Joueur joueur : equipe.getListeJoueur()) {
+					joueur.afficherMain();
+				}
+			}
+			
+
+			
+			distribuerApresAtout();
+
+			for (Equipe equipe : equipes) {
+				for (Joueur joueur : equipe.getListeJoueur()) {
+					joueur.afficherMain();
+				}
 			}
 		}
-		
-		Couleur couleuratout = tourChoixAtout();
-		System.out.println(couleuratout);
-		distribuerApresAtout();
-
-		for (Equipe equipe : equipes) {
-			for (Joueur joueur : equipe.getListeJoueur()) {
-				joueur.afficherMain();
-			}
-		}
-
+		//apres les 1000 points
 	}
 	
 	
 	public Couleur tourChoixAtout() {
 		Joueur joueurChoix = joueurAQuiDistribuer;
+		System.out.println(paquetDeCarte.size());
 		System.out.println("La retourne : " + paquetDeCarte.get(0));
 		for (int i = 0; i < 4; i++) {
 			if (joueurChoix.choisirAtout()) {
@@ -95,10 +120,11 @@ public class Jeu {
 	public void distribuerCinqCarte() {
 		if (paquetDeCarte.size() < 32) {
 			for (int i = 0; i < 4; i++) {
-				for (int j = 0; j < joueurAQuiDistribuer.getNbCarte(); j++) {
+				while (joueurAQuiDistribuer.getNbCarte()>0) {
 					paquetDeCarte.add(joueurAQuiDistribuer.retirerCarte());
-					setJoueurAQuiDistribuer(getJoueurAQuiDistribuer().getJoueurSuivant());
 				}
+				setJoueurAQuiDistribuer(getJoueurAQuiDistribuer().getJoueurSuivant());
+
 			}
 		}
 		for (int i = 0; i < 4; i++) {

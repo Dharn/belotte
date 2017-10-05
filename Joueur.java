@@ -35,8 +35,23 @@ public class Joueur {
 		age = age;
 
 	}
-
-	public void jouerCarte(Carte c,Pli pli){
+	
+	public void choisirCarteAjouer(Pli pli){
+		System.out.println(this+" choisissez une carte a jouer");
+		this.afficherMain();
+		pli.afficherPli();
+		Scanner myScanner = new Scanner(System.in);
+		String nomDeCarte = myScanner.nextLine().toString();
+		for (Carte carte : main) {
+			if (nomDeCarte.compareTo(carte.toString())==0) {
+				poserCarte(carte, pli);
+				
+			}
+		}
+		
+	}
+	
+	public void poserCarte(Carte c,Pli pli){
 		if (main.contains(c)) {
 			pli.addCarteJouee(c);
 			retirerCarte(c);
