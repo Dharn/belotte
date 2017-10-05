@@ -78,8 +78,6 @@ public class Tour {
 			
 			Pli pliActuel = new Pli(this);
 			
-			
-			
 		}
 	}
 	

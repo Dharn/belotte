@@ -15,6 +15,7 @@ public class Pli {
 			tour.getJoueurAQuiDistribuer().choisirCarteAjouer(this); //pose une carte sur le pli
 			tour.setJoueurAQuiDistribuer(tour.getJoueurAQuiDistribuer().getJoueurSuivant()); //passe au joueur suivant
 		}
+		tour.getPaquetDeCarte().addAll(0, cartesJouees);
 		
 		
 	}

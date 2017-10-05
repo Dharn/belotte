@@ -69,8 +69,6 @@ public class Jeu {
 				}
 			}
 
-			
-
 			// for (Equipe equipe : equipes) {
 			// for (Joueur joueur : equipe.getListeJoueur()) {
 			// joueur.afficherMain();
@@ -80,11 +78,7 @@ public class Jeu {
 			distribuerApresAtout();
 			new Tour(couleurAtout, paquetDeCarte, equipes, joueurAQuiDistribuer);
 			joueurQuiDistribue = joueurQuiDistribue.getJoueurSuivant();
-			for (Equipe equipe : equipes) {
-				for (Joueur joueur : equipe.getListeJoueur()) {
-					joueur.afficherMain();
-				}
-			}
+
 		}
 		// apres les 1000 points
 	}

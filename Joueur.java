@@ -45,10 +45,11 @@ public class Joueur {
 			pli.afficherPli();
 			Scanner myScanner = new Scanner(System.in);
 			String nomDeCarte = myScanner.nextLine().toString();
+			//String nomDeCarte = main.get(0).toString();
 			for (Carte carte : main) {
 				if (nomDeCarte.compareTo(carte.toString())==0) {
 					aPose = verifierEtPoserCarte(carte, pli);
-					
+					return;
 				}
 			}
 		}
