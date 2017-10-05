@@ -1,5 +1,5 @@
 package belotte;
-
+// Salut
 public class Belotte {
 
 	public static void main(String[] args) {
