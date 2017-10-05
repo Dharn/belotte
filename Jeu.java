@@ -10,6 +10,15 @@ public class Jeu {
 	private ArrayList<Carte> paquetDeCarte = new ArrayList<Carte>();
 	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
 	private Joueur joueurAQuiDistribuer;
+	private Joueur joueurQuiDistribue;
+
+	public Joueur getJoueurQuiDistribue() {
+		return joueurQuiDistribue;
+	}
+
+	public void setJoueurQuiDistribue(Joueur joueurQuiDistribue) {
+		this.joueurQuiDistribue = joueurQuiDistribue;
+	}
 
 	public Joueur getJoueurAQuiDistribuer() {
 		return joueurAQuiDistribuer;
@@ -28,60 +37,65 @@ public class Jeu {
 		e1.getListeJoueur().get(1).setJoueurSuivant(e2.getListeJoueur().get(1));
 		e2.getListeJoueur().get(1).setJoueurSuivant(e1.getListeJoueur().get(0));
 		joueurAQuiDistribuer = e1.getListeJoueur().get(0);
+		joueurQuiDistribue = e2.getListeJoueur().get(1);
 		preparerCartes();
 		melangerPaquetDeCarte();
 
-		int temp =0;
-		while (equipes.get(0).getPoints()<1000 || equipes.get(1).getPoints()<1000) { //fin du jeu apres 1000 points
-			System.out.println("tour "+temp);
+		int temp = 0;
+		while (equipes.get(0).getPoints() < 1000 || equipes.get(1).getPoints() < 1000) { // fin
+																							// du
+																							// jeu
+																							// apres
+																							// 1000
+																							// points
+			System.out.println("tour " + temp);
 			temp++;
-			boolean atoutEstPrit=false;
-			Couleur couleurAtout=null;
-			while (!atoutEstPrit) { // tant que l'atout n'est pas prit, redistribution
+			boolean atoutEstPris = false;
+			Couleur couleurAtout = null;
+			while (!atoutEstPris) { // tant que l'atout n'est pas prit,
+									// redistribution
+				joueurQuiDistribue.couper(paquetDeCarte);
 				distribuerCinqCarte();
 				for (Equipe equipe : equipes) {
 					for (Joueur joueur : equipe.getListeJoueur()) {
 						joueur.afficherMain();
 					}
 				}
-				
+
 				couleurAtout = tourChoixAtout();
 				if (couleurAtout != null) { // si atout prit, fin du while
 					System.out.println(couleurAtout);
-					atoutEstPrit =true;
+					atoutEstPris = true;
 				}
 			}
-			
-			Tour nouveauTour = new Tour(couleurAtout, paquetDeCarte, equipes, joueurAQuiDistribuer);
-			
-			
-			for (Equipe equipe : equipes) {
-				for (Joueur joueur : equipe.getListeJoueur()) {
-					joueur.afficherMain();
-				}
-			}
-			
 
 			
+
+			// for (Equipe equipe : equipes) {
+			// for (Joueur joueur : equipe.getListeJoueur()) {
+			// joueur.afficherMain();
+			// }
+			// }
+
 			distribuerApresAtout();
-
+			new Tour(couleurAtout, paquetDeCarte, equipes, joueurAQuiDistribuer);
+			joueurQuiDistribue = joueurQuiDistribue.getJoueurSuivant();
 			for (Equipe equipe : equipes) {
 				for (Joueur joueur : equipe.getListeJoueur()) {
 					joueur.afficherMain();
 				}
 			}
 		}
-		//apres les 1000 points
+		// apres les 1000 points
 	}
-	
-	
+
 	public Couleur tourChoixAtout() {
 		Joueur joueurChoix = joueurAQuiDistribuer;
 		System.out.println(paquetDeCarte.size());
 		System.out.println("La retourne : " + paquetDeCarte.get(0));
 		for (int i = 0; i < 4; i++) {
 			if (joueurChoix.choisirAtout()) {
-				Couleur couleurAtout= paquetDeCarte.get(0).getCouleur();
+				Couleur couleurAtout = paquetDeCarte.get(0).getCouleur();
 				joueurChoix.donnerCarte(paquetDeCarte.get(0));
 				paquetDeCarte.remove(0);
 				return couleurAtout;
@@ -120,7 +134,7 @@ public class Jeu {
 	public void distribuerCinqCarte() {
 		if (paquetDeCarte.size() < 32) {
 			for (int i = 0; i < 4; i++) {
-				while (joueurAQuiDistribuer.getNbCarte()>0) {
+				while (joueurAQuiDistribuer.getNbCarte() > 0) {
 					paquetDeCarte.add(joueurAQuiDistribuer.retirerCarte());
 				}
 				setJoueurAQuiDistribuer(getJoueurAQuiDistribuer().getJoueurSuivant());

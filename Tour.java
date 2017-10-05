@@ -46,7 +46,7 @@ public class Tour {
 		this.paquetDeCarte = paquetDeCarte;
 		this.equipes = equipes;
 		this.joueurAQuiDistribuer= joueurAQuiDistribuer;
-		
+		jouerTour();
 		
 	}
 

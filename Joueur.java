@@ -38,6 +38,20 @@ public class Joueur {
 	}
 	
 	public void choisirCarteAjouer(Pli pli){
+		boolean aPose= false;
+		while (!aPose) {
+			System.out.println(this+" choisissez une carte a jouer");
+			this.afficherMain();
+			pli.afficherPli();
+			Scanner myScanner = new Scanner(System.in);
+			String nomDeCarte = myScanner.nextLine().toString();
+			for (Carte carte : main) {
+				if (nomDeCarte.compareTo(carte.toString())==0) {
+					aPose = verifierEtPoserCarte(carte, pli);
+					
+				}
+			}
+		}
 		System.out.println(this+" choisissez une carte a jouer");
 		this.afficherMain();
 		pli.afficherPli();
@@ -51,6 +65,13 @@ public class Joueur {
 		}
 		
 	}
+	
+	public boolean verifierEtPoserCarte(Carte carte,Pli pli) { //true si carte posable, false sinon
+		poserCarte(carte, pli);
+		return true;
+		
+	}
+	
 	
 	public void poserCarte(Carte c,Pli pli){
 		if (main.contains(c)) {
@@ -119,7 +140,7 @@ public class Joueur {
 		return prenom+" "+nom;
 	}
 	
-	public ArrayList<Carte> couper(ArrayList<Carte> paquetACouper){
+	public void couper(ArrayList<Carte> paquetACouper){
 		int randint;
 		Random rand = new Random();
 		randint = rand.nextInt(paquetACouper.size());
@@ -132,7 +153,7 @@ public class Joueur {
 		for(int idx_carte = 0; idx_carte < randint; idx_carte++){
 			paquetCoupe.add(paquetACouper.get(idx_carte));
 		}
-		return paquetCoupe;
+		paquetCoupe= paquetACouper;
 	}
 	
 	
