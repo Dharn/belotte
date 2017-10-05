@@ -91,18 +91,6 @@ public class Jeu {
 
 	}
 
-	private void distribuerNCarte(int n) {
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < n; j++) {
-				this.getJoueurAQuiDistribuer().donnerCarte(paquetDeCarte.get(0));
-				paquetDeCarte.remove(0);
-				setJoueurAQuiDistribuer(getJoueurAQuiDistribuer().getJoueurSuivant());
-
-			}
-
-		}
-	}
-
 	public void distribuerCinqCarte() {
 		if (paquetDeCarte.size() < 32) {
 			for (int i = 0; i < 4; i++) {
@@ -112,8 +100,20 @@ public class Jeu {
 				}
 			}
 		}
-		this.distribuerNCarte(3);
-		this.distribuerNCarte(2);
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 3; j++) {
+				this.getJoueurAQuiDistribuer().donnerCarte(paquetDeCarte.get(0));
+				paquetDeCarte.remove(0);
+				setJoueurAQuiDistribuer(getJoueurAQuiDistribuer().getJoueurSuivant());
+			}
+		}
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 2; j++) {
+				this.getJoueurAQuiDistribuer().donnerCarte(paquetDeCarte.get(0));
+				paquetDeCarte.remove(0);
+				setJoueurAQuiDistribuer(getJoueurAQuiDistribuer().getJoueurSuivant());
+			}
+		}
 
 	}
 

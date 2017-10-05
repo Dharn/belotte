@@ -11,7 +11,7 @@ public class Belotte {
 		Equipe e1 = new Equipe("winner",j1,j2);
 		Equipe e2 = new Equipe("yeah",j3,j4);
 		
-		Jeu partie1 = new Jeu(e1,e2);
+		new Jeu(e1,e2);
 
 	}
 

@@ -33,6 +33,7 @@ public class Joueur {
 		this.nom = nom;
 		this.prenom = prenom;
 		age = age;
+
 	}
 
 	public void jouerCarte(Carte c,Pli pli){
