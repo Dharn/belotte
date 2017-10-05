@@ -2,6 +2,7 @@ package belotte;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.Random;
 
 public class Joueur {
 	private String nom;
@@ -103,6 +104,21 @@ public class Joueur {
 		return prenom+" "+nom;
 	}
 	
+	public ArrayList<Carte> couper(ArrayList<Carte> paquetACouper){
+		int randint;
+		Random rand = new Random();
+		randint = rand.nextInt(paquetACouper.size());
+		ArrayList<Carte> paquetCoupe = new ArrayList<Carte>();
+
+		for(int idx_carte =randint; idx_carte < paquetACouper.size(); idx_carte++){
+			paquetCoupe.add(paquetACouper.get(idx_carte));
+		}
+		
+		for(int idx_carte = 0; idx_carte < randint; idx_carte++){
+			paquetCoupe.add(paquetACouper.get(idx_carte));
+		}
+		return paquetCoupe;
+	}
 	
 	
 }
