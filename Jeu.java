@@ -20,7 +20,7 @@ public class Jeu {
 	}
 
 	public Jeu(Equipe e1, Equipe e2) {
-		
+
 		equipes.add(e1);
 		equipes.add(e2);
 		e1.getListeJoueur().get(0).setJoueurSuivant(e2.getListeJoueur().get(0));
@@ -31,44 +31,51 @@ public class Jeu {
 		preparerCartes();
 		melangerPaquetDeCarte();
 		distribuerCinqCarte();
+
 		for (Equipe equipe : equipes) {
 			for (Joueur joueur : equipe.getListeJoueur()) {
 				joueur.afficherMain();
 			}
 		}
-		tourChoixAtout();
+
+		Couleur couleuratout = tourChoixAtout();
+		System.out.println(couleuratout);
 		distribuerApresAtout();
+
 		for (Equipe equipe : equipes) {
 			for (Joueur joueur : equipe.getListeJoueur()) {
 				joueur.afficherMain();
 			}
 		}
+
 	}
 
-	
-	public void tourChoixAtout (){
-		Joueur joueurChoix= joueurAQuiDistribuer;
-		System.out.println("La retourne : "+paquetDeCarte.get(0));
+	public Couleur tourChoixAtout() {
+		Joueur joueurChoix = joueurAQuiDistribuer;
+		System.out.println("La retourne : " + paquetDeCarte.get(0));
 		for (int i = 0; i < 4; i++) {
 			if (joueurChoix.choisirAtout()) {
+				Couleur couleurAtout= paquetDeCarte.get(0).getCouleur();
 				joueurChoix.donnerCarte(paquetDeCarte.get(0));
 				paquetDeCarte.remove(0);
-				return;
+				return couleurAtout;
 			}
-			joueurChoix= joueurChoix.getJoueurSuivant();
-			
+			joueurChoix = joueurChoix.getJoueurSuivant();
+
 		}
 		for (int i = 0; i < 4; i++) {
-			if (joueurChoix.choisirCouleurAtout()!=null) {
+			Couleur couleurAtout = joueurChoix.choisirCouleurAtout();
+			if (couleurAtout != null) {
 				joueurChoix.donnerCarte(paquetDeCarte.get(0));
 				paquetDeCarte.remove(0);
-				return;
+				return couleurAtout;
 			}
-			joueurChoix= joueurChoix.getJoueurSuivant();
-			
+			joueurChoix = joueurChoix.getJoueurSuivant();
+
 		}
+		return null;
 	}
-	
+
 	public void preparerCartes() {
 
 		for (Couleur couleur : Couleur.values()) {
@@ -83,19 +90,21 @@ public class Jeu {
 		}
 
 	}
-	private void distribuerNCarte(int n){
+
+	private void distribuerNCarte(int n) {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < n; j++) {
 				this.getJoueurAQuiDistribuer().donnerCarte(paquetDeCarte.get(0));
 				paquetDeCarte.remove(0);
 				setJoueurAQuiDistribuer(getJoueurAQuiDistribuer().getJoueurSuivant());
-				
+
 			}
-			
+
 		}
 	}
+
 	public void distribuerCinqCarte() {
-		if (paquetDeCarte.size()<32) {
+		if (paquetDeCarte.size() < 32) {
 			for (int i = 0; i < 4; i++) {
 				for (int j = 0; j < joueurAQuiDistribuer.getNbCarte(); j++) {
 					paquetDeCarte.add(joueurAQuiDistribuer.retirerCarte());
@@ -105,29 +114,28 @@ public class Jeu {
 		}
 		this.distribuerNCarte(3);
 		this.distribuerNCarte(2);
-		
+
 	}
-	
-	public void distribuerApresAtout(){
+
+	public void distribuerApresAtout() {
 		for (int i = 0; i < 4; i++) {
 			if (joueurAQuiDistribuer.getAPritAtout()) {
 				for (int j = 0; j < 2; j++) {
 					joueurAQuiDistribuer.donnerCarte(paquetDeCarte.get(0));
-					paquetDeCarte.remove(0);					
+					paquetDeCarte.remove(0);
 				}
 				setJoueurAQuiDistribuer(joueurAQuiDistribuer.getJoueurSuivant());
-			}
-			else {
+			} else {
 				for (int k = 0; k < 3; k++) {
 					joueurAQuiDistribuer.donnerCarte(paquetDeCarte.get(0));
 					paquetDeCarte.remove(0);
 				}
 				setJoueurAQuiDistribuer(joueurAQuiDistribuer.getJoueurSuivant());
 			}
-			
+
 		}
 	}
-	
+
 	public void AfficherPaquetDeCarte() {
 		for (Carte carte : paquetDeCarte) {
 			System.out.println(carte);
@@ -142,5 +150,5 @@ public class Jeu {
 		j.donnerCarte(paquetDeCarte.get(0));
 		paquetDeCarte.remove(0);
 	}
-	
+
 }
