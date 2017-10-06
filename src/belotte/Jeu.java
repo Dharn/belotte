@@ -207,6 +207,7 @@ public class Jeu {
 		Carte premiereCarte;
 		premiereCarte = CartesJouees.get(0);
 		
+
 		if(carte.getCouleur() == premiereCarte.getCouleur()){
 			return true;
 		}
@@ -216,10 +217,11 @@ public class Jeu {
 		else if(carte.getPossesseur().getEquipe() == pli.maitreDuPli().getEquipe()){
 			return true;
 		}
-		else {
-			return false;
+		else if (carte.getPossesseur().aCouleur(premiereCarte.getCouleur()) == false 
+				&& carte.getPossesseur().aAtout(pli.getTour()) == false){
+			return true;
 		}
-		
+		return false;
 	}
 
 }

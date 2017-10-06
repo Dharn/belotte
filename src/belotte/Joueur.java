@@ -13,6 +13,27 @@ public class Joueur {
 	private Joueur joueurSuivant;
 	private boolean aPritAtout=false;
 	
+	public boolean aAtout(Tour t){
+		boolean aAtout = false;
+		for(Carte c:this.main){
+			if(c.getCouleur() == t.getCouleurAtout()){
+				aAtout = true;
+				return aAtout;
+			}
+		}
+		return false;
+	}
+	
+	public boolean aCouleur(Couleur coul){
+		boolean couleurEnMain = false;
+		for(Carte c:this.main){
+			if (c.getCouleur() == coul){
+				couleurEnMain = true;
+				return couleurEnMain;
+			}
+		}
+		return couleurEnMain;
+	}
 	
 	public Equipe getEquipe() {
 		return equipe;
