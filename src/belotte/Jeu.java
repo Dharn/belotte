@@ -12,6 +12,18 @@ public class Jeu {
 	private Joueur joueurAQuiDistribuer;
 	private Joueur joueurQuiDistribue;
 
+	public ArrayList<Carte> getPaquetDeCarte() {
+		return paquetDeCarte;
+	}
+
+	public void setPaquetDeCarte(ArrayList<Carte> paquetDeCarte) {
+		this.paquetDeCarte = paquetDeCarte;
+	}
+
+	public ArrayList<Equipe> getEquipes() {
+		return equipes;
+	}
+
 	public Joueur getJoueurQuiDistribue() {
 		return joueurQuiDistribue;
 	}
@@ -76,7 +88,8 @@ public class Jeu {
 			// }
 
 			distribuerApresAtout();
-			new Tour(couleurAtout, paquetDeCarte, equipes, joueurAQuiDistribuer);
+			new Tour(couleurAtout, this);
+			joueurAQuiDistribuer = joueurAQuiDistribuer.getJoueurSuivant();
 			joueurQuiDistribue = joueurQuiDistribue.getJoueurSuivant();
 
 		}

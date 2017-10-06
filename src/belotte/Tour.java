@@ -7,6 +7,7 @@ public class Tour {
 	private ArrayList<Carte> paquetDeCarte = new ArrayList<Carte>();
 	private ArrayList<Equipe> equipes = new ArrayList<>();
 	private Joueur joueurAQuiDistribuer;
+	private Jeu jeu;
 	
 
 	public Couleur getCouleurAtout() {
@@ -41,11 +42,12 @@ public class Tour {
 		this.joueurAQuiDistribuer = joueurAQuiDistribuer;
 	}
 
-	public Tour(Couleur couleurAtout, ArrayList<Carte> paquetDeCarte,ArrayList<Equipe> equipes,Joueur joueurAQuiDistribuer) {
+	public Tour(Couleur couleurAtout, Jeu jeu) {
+		this.jeu = jeu;
 		this.couleurAtout = couleurAtout;
-		this.paquetDeCarte = paquetDeCarte;
-		this.equipes = equipes;
-		this.joueurAQuiDistribuer= joueurAQuiDistribuer;
+		this.paquetDeCarte = jeu.getPaquetDeCarte();
+		this.equipes = jeu.getEquipes();
+		this.joueurAQuiDistribuer= jeu.getJoueurAQuiDistribuer();
 		jouerTour();
 		
 	}
