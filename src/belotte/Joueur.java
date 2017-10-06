@@ -8,6 +8,7 @@ public class Joueur {
 	private String nom;
 	private String prenom;
 	private int age;
+	private Equipe equipe;
 	private ArrayList<Carte> main = new ArrayList<Carte>();
 	private Joueur joueurSuivant;
 	private boolean aPritAtout=false;
@@ -68,6 +69,7 @@ public class Joueur {
 	}
 	
 	public boolean verifierEtPoserCarte(Carte carte,Pli pli) { //true si carte posable, false sinon
+		
 		poserCarte(carte, pli);
 		return true;
 		
