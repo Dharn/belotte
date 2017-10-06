@@ -6,7 +6,7 @@ public class Pli {
 	private ArrayList<Carte> cartesJouees = new ArrayList<Carte>();
 	private Tour tour;
 	private Joueur premierJoueurPli;
-	
+
 	public Tour getTour() {
 		return tour;
 	}
@@ -15,16 +15,19 @@ public class Pli {
 		return cartesJouees;
 	}
 
-	public Pli(Tour tour){
+	public Pli(Tour tour) {
 		this.tour = tour;
 		premierJoueurPli = tour.getJoueurAQuiDistribuer();
 		jouerPli();
 	}
-	
-	public void jouerPli(){
+
+	public void jouerPli() {
 		for (int j = 0; j < 4; j++) {
-			premierJoueurPli.choisirCarteAjouer(this); //pose une carte sur le pli
-			premierJoueurPli= premierJoueurPli.getJoueurSuivant(); //passe au joueur suivant
+			premierJoueurPli.choisirCarteAjouer(this); // pose une carte sur le
+														// pli
+			premierJoueurPli = premierJoueurPli.getJoueurSuivant(); // passe au
+																	// joueur
+																	// suivant
 		}
 		calculerPliEtAjouterPoint();
 		for (Carte carte : cartesJouees) {
@@ -32,10 +35,13 @@ public class Pli {
 			tour.getPaquetDeCarte().add(carte);
 		}
 	}
-	
+
 	public void calculerPliEtAjouterPoint() {
+		
 		int point = 0;
 		Joueur joueurGagnant = maitreDuPli();
+		this.afficherPli();
+		System.out.println(joueurGagnant);
 		Equipe equipeGagnante = null;
 		
 		for (Equipe e : tour.getEquipes()) {
@@ -45,61 +51,70 @@ public class Pli {
 				}
 			}
 		}
-		
+
 		Carte c;
-		
-		for (int i=0;i< cartesJouees.size(); i++) {
-			c= cartesJouees.get(0);
+
+		for (int i = 0; i < cartesJouees.size(); i++) {
+			c = cartesJouees.get(0);
 			if (c.getCouleur() == tour.getCouleurAtout()) {
 				point += c.getValeurAtout();
 				tour.getPaquetDeCarte().add(c);
 				c.setPossesseur(null);
 				cartesJouees.remove(c);
-				
-			}
-			else {
+
+			} else {
 				point += c.getValeur();
 				tour.getPaquetDeCarte().add(c);
 				c.setPossesseur(null);
 				cartesJouees.remove(c);
 			}
 		}
-		
+
 		// ajouter les point a l'équipe gagnante
-		if (equipeGagnante!= null) {
-			equipeGagnante.setPoints(equipeGagnante.getPoints()+point);
+		if (equipeGagnante != null) {
+			equipeGagnante.setPoints(equipeGagnante.getPoints() + point);
 		}
-		
-		
+
 	}
-	
-	public Joueur maitreDuPli(){
-		
-		if (cartesJouees.size()>0) {
+
+	public Joueur maitreDuPli() {
+
+		if (cartesJouees.size() > 0) {
+			Carte tempCarteMaitre = cartesJouees.get(0);
 			Couleur couleurDuPli = cartesJouees.get(0).getCouleur();
 			for (Carte carte : cartesJouees) {
-				if (carte.getCouleur()== couleurDuPli || carte.getCouleur()==tour.getCouleurAtout()) {
-					if (carte.getCouleur() == tour.getCouleurAtout()) {
-						
+				if (carte.getCouleur() == tour.getCouleurAtout()) {
+					if (tempCarteMaitre.getCouleur() == tour.getCouleurAtout()) {
+						if (carte.getValeurAtout() > tempCarteMaitre.getValeurAtout()) {
+							tempCarteMaitre = carte;
+						}
+					} else {
+						tempCarteMaitre = carte;
+					}
+				} else if (carte.getCouleur() == couleurDuPli) {
+					if (tempCarteMaitre.getCouleur() != tour.getCouleurAtout()) {
+						if (carte.getValeur() > tempCarteMaitre.getValeur()) {
+							tempCarteMaitre = carte;
+						}
 					}
 				}
 			}
+			return tempCarteMaitre.getPossesseur();
 		}
-		
+
 		return null;
 	}
-	
-	public void addCarteJouee(Carte c){
+
+	public void addCarteJouee(Carte c) {
 		cartesJouees.add(c);
 	}
-	
-	public void afficherPli(){
+
+	public void afficherPli() {
 		System.out.print("Pli : ");
 		for (Carte carte : cartesJouees) {
-			System.out.print(carte+" | ");
+			System.out.print(carte + " | ");
 		}
 		System.out.println();
 	}
-	
-	
+
 }
