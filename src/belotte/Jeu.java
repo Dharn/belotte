@@ -213,7 +213,7 @@ public class Jeu {
 		paquetDeCarte.remove(0);
 	}
 
-	public boolean estAutorise(Pli pli, Carte carte) {
+	public boolean estAutorise(Pli pli, Carte carte,ArrayList<Carte> main) {
 		ArrayList<Carte> CartesJouees = new ArrayList<Carte>();
 		CartesJouees = pli.getCartesJouees();
 
@@ -225,15 +225,29 @@ public class Jeu {
 		if (premiereCarte == null) {
 			return true;
 		} else if (carte.getCouleur() == premiereCarte.getCouleur()) {
-			return true;
-		} else if (pli.getTour().getCouleurAtout() == carte.getCouleur()) {
 			boolean peutPoserAtout = true;
-			for (Carte carteMain : CartesJouees) {
+			if (carte.getCouleur()== pli.getTour().getCouleurAtout()) {
+				for (Carte carteMain : main) {
+						if ( pli.atoutMaxPli().getValeurAtout() > carte.getValeurAtout() && carteMain.getCouleur() == pli.getTour().getCouleurAtout() &&carteMain.getValeurAtout()> pli.atoutMaxPli().getValeurAtout()) { // si ma carte est plus faible, et j'ai un atout plus fort : peut pas poser
+							peutPoserAtout= false;
+							System.out.println("peut pas poser car atout dans pli:" + carteMain);
+						}
+				}
+			}
+			return peutPoserAtout;
+			
+		} else if (carte.getCouleur() == pli.getTour().getCouleurAtout()) {
+			boolean peutPoserAtout = true;
+			System.out.println("atout :"+ pli.getTour().getCouleurAtout());
+			
+			for (Carte carteMain : main) {
 				if (carteMain.getCouleur() == premiereCarte.getCouleur() && carte != carteMain) { //si carte de la couleur demandée dans la main : peut pas poser
 				peutPoserAtout= false;
+				System.out.println("peut pas poser car couleur demander presente :" + carteMain);
 				}
 				if (pli.atoutMaxPli() != null && pli.atoutMaxPli().getValeurAtout() > carte.getValeurAtout() && carteMain.getCouleur() == pli.getTour().getCouleurAtout() &&carteMain.getValeurAtout()> pli.atoutMaxPli().getValeurAtout()) { // si ma carte est plus faible, et j'ai un atout plus fort : peut pas poser
 					peutPoserAtout= false;
+					System.out.println("peut pas poser car atout dans pli:" + carteMain);
 				}
 				
 			}
