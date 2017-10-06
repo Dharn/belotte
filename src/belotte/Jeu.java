@@ -54,7 +54,7 @@ public class Jeu {
 		melangerPaquetDeCarte();
 
 		int temp = 0;
-		while (equipes.get(0).getPoints() < 1000 || equipes.get(1).getPoints() < 1000) { // fin
+		while (equipes.get(0).getPoints() <= 1000 && equipes.get(1).getPoints() <= 1000) { // fin
 																							// du
 																							// jeu
 																							// apres
@@ -91,9 +91,21 @@ public class Jeu {
 			new Tour(couleurAtout, this);
 			joueurAQuiDistribuer = joueurAQuiDistribuer.getJoueurSuivant();
 			joueurQuiDistribue = joueurQuiDistribue.getJoueurSuivant();
-
+			for (Equipe equipe : equipes) {
+				System.out.println(equipe.getNom()+" point : "+equipe.getPoints());
+			}
 		}
 		// apres les 1000 points
+		Equipe equipeGagnante = null;
+		if (equipes.get(0).getPoints()> equipes.get(1).getPoints()) {
+			System.out.println(equipes.get(0).getNom()+" est l'équipe gagnate avec "+equipes.get(0).getPoints()+" points.");
+		}
+		else if (equipes.get(0).getPoints()< equipes.get(1).getPoints()) {
+			System.out.println(equipes.get(1).getNom()+" est l'équipe gagnate avec "+equipes.get(1).getPoints()+" points.");
+		}
+		else {
+			System.out.println("il y a ex aequo a "+equipes.get(0).getPoints()+" points.");
+		}
 	}
 
 	public Couleur tourChoixAtout() {

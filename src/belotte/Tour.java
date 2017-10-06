@@ -10,6 +10,10 @@ public class Tour {
 	private Jeu jeu;
 	
 
+	public Jeu getJeu() {
+		return jeu;
+	}
+
 	public Couleur getCouleurAtout() {
 		return couleurAtout;
 	}
@@ -59,6 +63,7 @@ public class Tour {
 		for (int i = 0; i < 8; i++) {
 			
 			Pli pliActuel = new Pli(this);
+			
 		}
 		for (Equipe equipe : equipes) {
 			for (Joueur joueur : equipe.getListeJoueur()) {
