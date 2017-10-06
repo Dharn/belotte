@@ -82,6 +82,7 @@ public class Joueur {
 	}
 	
 	public void donnerCarte(Carte c){
+		c.setPossesseur(this);
 		main.add(c);
 	}
 	public Carte retirerCarte(){

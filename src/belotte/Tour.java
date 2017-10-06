@@ -52,34 +52,13 @@ public class Tour {
 		
 	}
 
-	public int calculerPli(Pli p) {
-		int point = 0;
-		Carte c;
-		for (int i=0;i< p.getCartesJouees().size(); i++) {
-			c= p.getCartesJouees().get(0);
-			if (c.getCouleur() == couleurAtout) {
-				point += c.getValeurAtout();
-				paquetDeCarte.add(c);
-				p.getCartesJouees().remove(c);
-				
-			}
-			else {
-				point += c.getValeur();
-				paquetDeCarte.add(c);
-				p.getCartesJouees().remove(c);
-			}
-		}
-		
-		
-		return point;
-	}
+	
 	
 	public void jouerTour(){
 		
 		for (int i = 0; i < 8; i++) {
 			
 			Pli pliActuel = new Pli(this);
-			
 		}
 		for (Equipe equipe : equipes) {
 			for (Joueur joueur : equipe.getListeJoueur()) {
