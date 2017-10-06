@@ -14,6 +14,12 @@ public class Joueur {
 	private boolean aPritAtout=false;
 	
 	
+	public Equipe getEquipe() {
+		return equipe;
+	}
+	public void setEquipe(Equipe equipe) {
+		this.equipe = equipe;
+	}
 	public boolean getAPritAtout() {
 		return aPritAtout;
 	}

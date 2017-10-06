@@ -204,7 +204,7 @@ public class Jeu {
 		ArrayList<Carte> CartesJouees = new ArrayList<Carte>();
 		CartesJouees = pli.getCartesJouees();
 		
-		Carte premiereCarte = new Carte();
+		Carte premiereCarte;
 		premiereCarte = CartesJouees.get(0);
 		
 		if(carte.getCouleur() == premiereCarte.getCouleur()){
