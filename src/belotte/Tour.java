@@ -62,7 +62,10 @@ public class Tour {
 		
 		for (int i = 0; i < 8; i++) {
 			
-			Pli pliActuel = new Pli(this);
+			Pli pli = new Pli(this);
+			if (i==7) {
+				pli.getEquipeGagnante().setPoints(pli.getEquipeGagnante().getPoints()+10);
+			}
 			
 		}
 		for (Equipe equipe : equipes) {

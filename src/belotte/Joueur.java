@@ -141,7 +141,7 @@ public class Joueur {
 			System.out.print(carte+" | ");
 			
 		}
-		
+		System.out.println();
 		//System.out.println("nb carte : "+ main.size());
 	}
 	
