@@ -110,9 +110,11 @@ public class Joueur {
 	public void afficherMain(){
 		System.out.println("la main de "+this);
 		for (Carte carte : main) {
-			System.out.print(carte+" | ");
+			//System.out.print(carte+" | ");
+			
 		}
-		System.out.println();
+		
+		System.out.println("nb carte : "+ main.size());
 	}
 	
 	public boolean choisirAtout(){
