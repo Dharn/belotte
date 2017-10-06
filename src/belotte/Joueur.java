@@ -96,9 +96,11 @@ public class Joueur {
 	}
 	
 	public boolean verifierEtPoserCarte(Carte carte,Pli pli) { //true si carte posable, false sinon
-		
-		poserCarte(carte, pli);
-		return true;
+		if(pli.getTour().getJeu().estAutorise(pli, carte) == true){
+			poserCarte(carte, pli);
+			return true;
+		}
+		return false;
 		
 	}
 	

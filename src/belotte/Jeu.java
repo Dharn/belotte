@@ -216,11 +216,15 @@ public class Jeu {
 		ArrayList<Carte> CartesJouees = new ArrayList<Carte>();
 		CartesJouees = pli.getCartesJouees();
 		
-		Carte premiereCarte;
-		premiereCarte = CartesJouees.get(0);
+		Carte premiereCarte = null;
+		if(CartesJouees.size() != 0){
+			premiereCarte = CartesJouees.get(0);
+		}
 		
-
-		if(carte.getCouleur() == premiereCarte.getCouleur()){
+		if(premiereCarte == null){
+			return true;
+		}
+		else if(carte.getCouleur() == premiereCarte.getCouleur()){
 			return true;
 		}
 		else if(pli.getTour().getCouleurAtout() == carte.getCouleur()){
@@ -233,6 +237,7 @@ public class Jeu {
 				&& carte.getPossesseur().aAtout(pli.getTour()) == false){
 			return true;
 		}
+
 		return false;
 	}
 
