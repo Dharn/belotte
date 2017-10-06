@@ -7,7 +7,26 @@ public class Pli {
 	private Tour tour;
 	private Joueur premierJoueurPli;
 	private Equipe equipeGagnante;
-
+	
+	public Carte atoutMaxPli(Tour t){
+		ArrayList<Carte> atoutsPli = new ArrayList<Carte>();
+		Couleur couleurAtout = t.getCouleurAtout();
+		Carte atoutMax = null; 
+		for(Carte c: cartesJouees){
+			if(c.getCouleur() == couleurAtout){
+				atoutsPli.add(c);
+			}
+		}
+		if(atoutsPli != null){
+			Carte plusFortAtout = atoutsPli.get(0);
+			for(Carte c: atoutsPli){
+				if(c.getValeurAtout() > plusFortAtout.getValeurAtout()){
+					plusFortAtout = c;
+				}
+			}
+		}
+		return atoutMax;
+	}
  	public Equipe getEquipeGagnante() {
 		return equipeGagnante;
 	}
