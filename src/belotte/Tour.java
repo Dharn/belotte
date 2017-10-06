@@ -81,6 +81,11 @@ public class Tour {
 			Pli pliActuel = new Pli(this);
 			
 		}
+		for (Equipe equipe : equipes) {
+			for (Joueur joueur : equipe.getListeJoueur()) {
+				joueur.setAPritAtout(false);
+			}
+		}
 	}
 	
 	
