@@ -35,7 +35,8 @@ public class Equipe {
 		nom = _nom;
 		ajouterJoueur(j1);
 		ajouterJoueur(j2);
-		
+		j1.setEquipe(this);
+		j2.setEquipe(this);
 	}
 	
 	public void ajouterJoueur(Joueur j) {
