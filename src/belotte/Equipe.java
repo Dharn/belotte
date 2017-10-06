@@ -35,6 +35,7 @@ public class Equipe {
 		nom = _nom;
 		ajouterJoueur(j1);
 		ajouterJoueur(j2);
+		
 	}
 	
 	public void ajouterJoueur(Joueur j) {

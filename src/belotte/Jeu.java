@@ -199,5 +199,27 @@ public class Jeu {
 		j.donnerCarte(paquetDeCarte.get(0));
 		paquetDeCarte.remove(0);
 	}
+	
+	public boolean estAutorise(Pli pli, Carte carte){
+		ArrayList<Carte> CartesJouees = new ArrayList<Carte>();
+		CartesJouees = pli.getCartesJouees();
+		
+		Carte premiereCarte = new Carte();
+		premiereCarte = CartesJouees.get(0);
+		
+		if(carte.getCouleur() == premiereCarte.getCouleur()){
+			return true;
+		}
+		else if(pli.getTour().getCouleurAtout() == carte.getCouleur()){
+			return true;
+		}
+		else if(carte.getPossesseur().getEquipe() == pli.maitreDuPli().getEquipe()){
+			return true;
+		}
+		else {
+			return false;
+		}
+		
+	}
 
 }
