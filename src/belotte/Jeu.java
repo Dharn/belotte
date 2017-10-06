@@ -227,17 +227,19 @@ public class Jeu {
 		} else if (carte.getCouleur() == premiereCarte.getCouleur()) {
 			return true;
 		} else if (pli.getTour().getCouleurAtout() == carte.getCouleur()) {
-			boolean atoutSupDansLePli = false;
+			boolean peutPoserAtout = true;
 			for (Carte carteMain : CartesJouees) {
-				if (carteMain.getCouleur() == pli.getTour().getCouleurAtout() && carteMain != carte) {
-					if (carte.getValeurAtout() > carteMain.getValeurAtout()) {
-
-					}
-				} else {
-
+				if (carteMain.getCouleur() == premiereCarte.getCouleur() && carte != carteMain) { //si carte de la couleur demandée dans la main : peut pas poser
+				peutPoserAtout= false;
 				}
+				if (pli.atoutMaxPli() != null && pli.atoutMaxPli().getValeurAtout() > carte.getValeurAtout() && carteMain.getCouleur() == pli.getTour().getCouleurAtout() &&carteMain.getValeurAtout()> pli.atoutMaxPli().getValeurAtout()) { // si ma carte est plus faible, et j'ai un atout plus fort : peut pas poser
+					peutPoserAtout= false;
+				}
+				
 			}
-			return true;
+			if (peutPoserAtout) {
+				return peutPoserAtout;
+			}
 		} else if (carte.getPossesseur().getEquipe() == pli.maitreDuPli().getEquipe()) {
 			if (carte.getPossesseur().aCouleur(premiereCarte.getCouleur()) == false) {
 				return true;
