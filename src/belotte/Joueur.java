@@ -71,28 +71,16 @@ public class Joueur {
 			System.out.println(this+" choisissez une carte a jouer");
 			this.afficherMain();
 			pli.afficherPli();
-			//Scanner myScanner = new Scanner(System.in);
-			//String nomDeCarte = myScanner.nextLine().toString();
-			String nomDeCarte = main.get(0).toString();
+			Scanner myScanner = new Scanner(System.in);
+			String nomDeCarte = myScanner.nextLine().toString();
+			//String nomDeCarte = main.get(0).toString();
 			for (Carte carte : main) {
 				if (nomDeCarte.compareTo(carte.toString())==0) {
 					aPose = verifierEtPoserCarte(carte, pli);
-					return;
+					break;
 				}
 			}
 		}
-		System.out.println(this+" choisissez une carte a jouer");
-		this.afficherMain();
-		pli.afficherPli();
-		Scanner myScanner = new Scanner(System.in);
-		String nomDeCarte = myScanner.nextLine().toString();
-		for (Carte carte : main) {
-			if (nomDeCarte.compareTo(carte.toString())==0) {
-				poserCarte(carte, pli);
-				
-			}
-		}
-		
 	}
 	
 	public boolean verifierEtPoserCarte(Carte carte,Pli pli) { //true si carte posable, false sinon

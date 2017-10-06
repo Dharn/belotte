@@ -2,6 +2,7 @@ package belotte;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -92,19 +93,19 @@ public class Jeu {
 			joueurAQuiDistribuer = joueurAQuiDistribuer.getJoueurSuivant();
 			joueurQuiDistribue = joueurQuiDistribue.getJoueurSuivant();
 			for (Equipe equipe : equipes) {
-				System.out.println(equipe.getNom()+" point : "+equipe.getPoints());
+				System.out.println(equipe.getNom() + " point : " + equipe.getPoints());
 			}
 		}
 		// apres les 1000 points
 		Equipe equipeGagnante = null;
-		if (equipes.get(0).getPoints()> equipes.get(1).getPoints()) {
-			System.out.println(equipes.get(0).getNom()+" est l'équipe gagnate avec "+equipes.get(0).getPoints()+" points.");
-		}
-		else if (equipes.get(0).getPoints()< equipes.get(1).getPoints()) {
-			System.out.println(equipes.get(1).getNom()+" est l'équipe gagnate avec "+equipes.get(1).getPoints()+" points.");
-		}
-		else {
-			System.out.println("il y a ex aequo a "+equipes.get(0).getPoints()+" points.");
+		if (equipes.get(0).getPoints() > equipes.get(1).getPoints()) {
+			System.out.println(
+					equipes.get(0).getNom() + " est l'équipe gagnate avec " + equipes.get(0).getPoints() + " points.");
+		} else if (equipes.get(0).getPoints() < equipes.get(1).getPoints()) {
+			System.out.println(
+					equipes.get(1).getNom() + " est l'équipe gagnate avec " + equipes.get(1).getPoints() + " points.");
+		} else {
+			System.out.println("il y a ex aequo a " + equipes.get(0).getPoints() + " points.");
 		}
 	}
 
@@ -211,30 +212,38 @@ public class Jeu {
 		j.donnerCarte(paquetDeCarte.get(0));
 		paquetDeCarte.remove(0);
 	}
-	
-	public boolean estAutorise(Pli pli, Carte carte){
+
+	public boolean estAutorise(Pli pli, Carte carte) {
 		ArrayList<Carte> CartesJouees = new ArrayList<Carte>();
 		CartesJouees = pli.getCartesJouees();
-		
+
 		Carte premiereCarte = null;
-		if(CartesJouees.size() != 0){
+		if (CartesJouees.size() != 0) {
 			premiereCarte = CartesJouees.get(0);
 		}
-		
-		if(premiereCarte == null){
+
+		if (premiereCarte == null) {
 			return true;
-		}
-		else if(carte.getCouleur() == premiereCarte.getCouleur()){
+		} else if (carte.getCouleur() == premiereCarte.getCouleur()) {
 			return true;
-		}
-		else if(pli.getTour().getCouleurAtout() == carte.getCouleur()){
+		} else if (pli.getTour().getCouleurAtout() == carte.getCouleur()) {
+			boolean atoutSupDansLePli = false;
+			for (Carte carteMain : CartesJouees) {
+				if (carteMain.getCouleur() == pli.getTour().getCouleurAtout() && carteMain != carte) {
+					if (carte.getValeurAtout() > carteMain.getValeurAtout()) {
+
+					}
+				} else {
+
+				}
+			}
 			return true;
-		}
-		else if(carte.getPossesseur().getEquipe() == pli.maitreDuPli().getEquipe()){
-			return true;
-		}
-		else if (carte.getPossesseur().aCouleur(premiereCarte.getCouleur()) == false 
-				&& carte.getPossesseur().aAtout(pli.getTour()) == false){
+		} else if (carte.getPossesseur().getEquipe() == pli.maitreDuPli().getEquipe()) {
+			if (carte.getPossesseur().aCouleur(premiereCarte.getCouleur()) == false) {
+				return true;
+			}
+		} else if (carte.getPossesseur().aCouleur(premiereCarte.getCouleur()) == false
+				&& carte.getPossesseur().aAtout(pli.getTour()) == false) {
 			return true;
 		}
 
