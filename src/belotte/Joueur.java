@@ -258,5 +258,19 @@ public class Joueur {
 		}
 		return carteMin;
 	}
+	public int getValeurTotale(ArrayList<Carte> paquetATester, boolean Atout){
+		int total = 0;
+		if(Atout == false){
+			for (Carte c : paquetATester){
+				total += c.getValeur();
+			}
+		}
+		else{
+			for (Carte c : paquetATester){
+				total += c.getValeurAtout();
+			}
+		}
+		return total;
+	}
 
 }

@@ -123,6 +123,9 @@ public class Ia {
 					return c;
 				}
 			}
+			if (this.joueurLie.getValeurTotale(nonJouees, false) < this.joueurLie.getValeurTotale(CartesAutorisees, false)){
+				return this.joueurLie.getMaxMain(false, CartesAutorisees);
+			}
 		}
 		else if (this.niveau == "difficile" && pli.getCartesJouees().size() != 0 && CartesAutorisees.get(0).getCouleur() == pli.getTour().getCouleurAtout()){
 			ArrayList<Carte> nonJouees = new ArrayList<Carte>();
@@ -131,6 +134,9 @@ public class Ia {
 				if(c.getValeur() > this.joueurLie.getMaxMain(true, nonJouees).getValeur()){
 					return c;
 				}
+			}
+			if (this.joueurLie.getValeurTotale(nonJouees, true) < this.joueurLie.getValeurTotale(CartesAutorisees, true)){
+				return this.joueurLie.getMaxMain(true, CartesAutorisees);
 			}
 		}
 		return CartesAutorisees.get(0);
