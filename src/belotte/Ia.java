@@ -100,7 +100,7 @@ public class Ia {
 					return this.joueurLie.getMinMain(true, CartesAutorisees);
 				}
 				else {
-					return this.joueurLie.getMain(false, CartesAutorisees);
+					return this.joueurLie.getMinMain(false, CartesAutorisees);
 				}
 			}
 			
