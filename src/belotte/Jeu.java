@@ -9,14 +9,9 @@ import java.util.Random;
 public class Jeu {
 
 	private ArrayList<Carte> paquetDeCarte = new ArrayList<Carte>();
-	private ArrayList<Carte> carteDeJeu = new ArrayList<Carte>();
 	private ArrayList<Equipe> equipes = new ArrayList<Equipe>();
 	private Joueur joueurAQuiDistribuer;
 	private Joueur joueurQuiDistribue;
-
-	public ArrayList<Carte> getCarteDeJeu() {
-		return carteDeJeu;
-	}
 
 	public ArrayList<Carte> getPaquetDeCarte() {
 		return paquetDeCarte;
@@ -152,15 +147,6 @@ public class Jeu {
 			paquetDeCarte.add(new Carte("Dame", couleur, 3, 3));
 			paquetDeCarte.add(new Carte("Roi", couleur, 4, 4));
 			paquetDeCarte.add(new Carte("AS", couleur, 11, 11));
-			
-			carteDeJeu.add(new Carte("7", couleur, 0, 0));
-			carteDeJeu.add(new Carte("8", couleur, 0, 0));
-			carteDeJeu.add(new Carte("9", couleur, 0, 14));
-			carteDeJeu.add(new Carte("10", couleur, 10, 10));
-			carteDeJeu.add(new Carte("Valet", couleur, 2, 20));
-			carteDeJeu.add(new Carte("Dame", couleur, 3, 3));
-			carteDeJeu.add(new Carte("Roi", couleur, 4, 4));
-			carteDeJeu.add(new Carte("AS", couleur, 11, 11));
 		}
 
 	}
