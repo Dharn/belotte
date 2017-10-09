@@ -15,7 +15,8 @@ public class Belotte {
 		new Ia(j2);
 		new Ia(j3);
 		new Ia(j4);
-
+		Interface interf = new Interface();
+		interf.setEmptyLabel("lol");
 		new Jeu(e1, e2);
 
 	}
