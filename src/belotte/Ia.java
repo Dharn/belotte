@@ -18,23 +18,17 @@ public class Ia {
 
 	public String choisirAtout(ArrayList<Carte> main, Carte laRetourne) {
 
-		if (pointsMainSiAtout(main, laRetourne) >= 24 && pointsTotalMainSiAtout(main, laRetourne) >= 35) {
+		if (pointsMainSiAtout(main, laRetourne) >= 24) {
 			Random r = new Random();
 			float point = (float) pointsMainSiAtout(main, laRetourne);
 			float pourcentage = (point * 100) / 44;
-			System.out.println("pourcent : "+pourcentage);
-			float rand = r.nextFloat()*100;
-			System.out.println("lancé : "+rand);
-			if (rand < pourcentage) {
-				System.out.println("oui");
-				return "oui";
+			if (r.nextFloat() * 100 < pourcentage) {
+				return " oui";
 			} else {
-				System.out.println("non");
 				return "non";
 			}
 
 		} else {
-			System.out.println("non");
 			return "non";
 		}
 	}
@@ -60,35 +54,26 @@ public class Ia {
 		int pointsCouleurPlusForte = 0;
 
 		for (Couleur couleur : Couleur.values()) {
-			if (couleursmain.get(couleur).size()!=0) {
-				Carte couleuretourne = couleursmain.get(couleur).get(0);
-				couleursmain.get(couleur).remove(0);
-				int points = pointsMainSiAtout(couleursmain.get(couleur), couleuretourne);
-				if (points > pointsCouleurPlusForte) {
-					pointsCouleurPlusForte = points;
-					couleurPlusForte = couleur;
-				}
+			Carte couleuretourne = couleursmain.get(couleur).get(0);
+			couleursmain.get(couleur).remove(0);
+			int points = pointsMainSiAtout(couleursmain.get(couleur), couleuretourne);
+			if (points > pointsCouleurPlusForte) {
+				pointsCouleurPlusForte = points;
+				couleurPlusForte = couleur;
 			}
-			
 		}
 		
-		if (pointsCouleurPlusForte >= 24 && pointsTotalMainSiAtout(main, couleurPlusForte) >= 35) {
+		if (pointsCouleurPlusForte >= 24) {
 			Random r = new Random();
 			float point = (float) pointsCouleurPlusForte;
 			float pourcentage = (point * 100) / 44;
-			System.out.println("pourcent : "+pourcentage);
-			float rand = r.nextFloat()*100;
-			System.out.println("lancé : "+rand);
-			if (rand < pourcentage) {
-				System.out.println(couleurPlusForte);
+			if (r.nextFloat() * 100 < pourcentage) {
 				return couleurPlusForte;
 			} else {
-				System.out.println("non");
 				return null;
 			}
 		}
 		else {
-			System.out.println("non");
 			return null;
 		}
 	}
@@ -102,7 +87,22 @@ public class Ia {
 			}
 		}
 		if (this.niveau == "facile"){
-			if(pli.getEquipeGagnante() == this.joueurLie.getEquipe());
+			if(pli.getEquipeGagnante() == this.joueurLie.getEquipe()){
+				if(pli.getTour().getCouleurAtout() == CartesAutorisees.get(0).getCouleur()){
+					return this.joueurLie.getMaxMain(true, CartesAutorisees);
+				}
+				else {
+					return this.joueurLie.getMaxMain(false, CartesAutorisees);
+				}
+			}
+			else{
+				if(pli.getTour().getCouleurAtout() == CartesAutorisees.get(0).getCouleur()){
+					return this.joueurLie.getMinMain(true, CartesAutorisees);
+				}
+				else {
+					return this.joueurLie.getMain(false, CartesAutorisees);
+				}
+			}
 			
 		}
 		
@@ -118,29 +118,5 @@ public class Ia {
 		}
 		return pts;
 	}
-	
-	private int pointsTotalMainSiAtout(ArrayList<Carte> main, Carte laRetourne) {
-		int pts = laRetourne.getValeurAtout();
-		for (Carte c : main) {
-			if (c.getCouleur() == laRetourne.getCouleur()) {
-				pts += c.getValeurAtout();
-			}
-			else {
-				pts+= c.getValeur();
-			}
-		}
-		return pts;
-	}
-	private int pointsTotalMainSiAtout(ArrayList<Carte> main, Couleur couleurAtout) {
-		int pts = 0;
-		for (Carte c : main) {
-			if (c.getCouleur() == couleurAtout) {
-				pts += c.getValeurAtout();
-			}
-			else {
-				pts+= c.getValeur();
-			}
-		}
-		return pts;
-	}
+
 }
