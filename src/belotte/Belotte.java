@@ -13,7 +13,6 @@ public class Belotte {
 
 		new Ia(j1,"facile");
 		new Ia(j2,"facile");
-		new Ia(j3,"facile");
 		Interface interf = new Interface();
 		interf.setEmptyLabel("lol");
 		new Ia(j3,"difficile");
