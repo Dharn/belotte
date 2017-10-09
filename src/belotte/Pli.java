@@ -6,7 +6,7 @@ public class Pli {
 	private ArrayList<Carte> cartesJouees = new ArrayList<Carte>();
 	private Tour tour;
 	private Joueur premierJoueurPli;
-	private Equipe equipeGagnante;
+	private Equipe equipeGagnante=null;
 	
 	public Carte atoutMaxPli(){
 		ArrayList<Carte> atoutsPli = new ArrayList<Carte>();
@@ -28,7 +28,13 @@ public class Pli {
 		return atoutMax;
 	}
  	public Equipe getEquipeGagnante() {
-		return equipeGagnante;
+ 		if (maitreDuPli()!= null) {
+ 			return maitreDuPli().getEquipe();
+		}
+ 		else {
+			return null;
+		}
+		
 	}
 
 	public Tour getTour() {
