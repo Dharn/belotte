@@ -86,7 +86,7 @@ public class Ia {
 				CartesAutorisees.add(c);
 			}
 		}
-		if (this.niveau == "facile"){
+		if (this.niveau == "facile" && pli.getCartesJouees().size() != 0){
 			if(pli.getEquipeGagnante() == this.joueurLie.getEquipe()){
 				if(pli.getTour().getCouleurAtout() == CartesAutorisees.get(0).getCouleur()){
 					return this.joueurLie.getMaxMain(true, CartesAutorisees);
@@ -105,8 +105,33 @@ public class Ia {
 			}
 			
 		}
+		else if(this.niveau == "facile" && pli.getCartesJouees().size() == 0){
+			for(Carte c : CartesAutorisees){
+				if (c.getCouleur() != pli.getTour().getCouleurAtout() && c.getNom() == "AS"){
+					return c;
+				}
+			}
+			return this.joueurLie.getMinMain(false, CartesAutorisees);
+		}
+		else if (this.niveau == "difficile" && pli.getCartesJouees().size() != 0 && CartesAutorisees.get(0).getCouleur() != pli.getTour().getCouleurAtout()){
+			ArrayList<Carte> nonJouees = new ArrayList<Carte>();
+			nonJouees = pli.getTour().getCartesNonJouees().get(CartesAutorisees.get(0).getCouleur());
+			for (Carte c: CartesAutorisees){
+				if(c.getValeur() > this.joueurLie.getMaxMain(false, nonJouees).getValeur()){
+					return c;
+				}
+			}
+		}
+		else if (this.niveau == "difficile" && pli.getCartesJouees().size() != 0 && CartesAutorisees.get(0).getCouleur() == pli.getTour().getCouleurAtout()){
+			ArrayList<Carte> nonJouees = new ArrayList<Carte>();
+			nonJouees = pli.getTour().getCartesNonJouees().get(CartesAutorisees.get(0).getCouleur());
+			for (Carte c: CartesAutorisees){
+				if(c.getValeur() > this.joueurLie.getMaxMain(true, nonJouees).getValeur()){
+					return c;
+				}
+			}
+		}
 		
-		return null;
 	}
 
 	private int pointsMainSiAtout(ArrayList<Carte> main, Carte laRetourne) {
