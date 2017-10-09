@@ -26,13 +26,13 @@ public class Ia {
 				System.out.println("oui");
 				return "oui";
 			} else {
-				
-				System.out.println("non");
+
+				System.out.println("non1");
 				return "non";
 			}
 
 		} else {
-			System.out.println("non");
+			System.out.println("non2");
 			return "non";
 		}
 	}
@@ -57,7 +57,7 @@ public class Ia {
 		int pointsCouleurPlusForte = 0;
 
 		for (Couleur couleur : Couleur.values()) {
-			if (couleursmain.get(couleur).size()>0) {
+			if (couleursmain.get(couleur).size() > 0) {
 				Carte couleuretourne = couleursmain.get(couleur).get(0);
 				couleursmain.get(couleur).remove(0);
 				int points = pointsMainSiAtout(couleursmain.get(couleur), couleuretourne);
@@ -66,55 +66,52 @@ public class Ia {
 					couleurPlusForte = couleur;
 				}
 			}
-			
+
 		}
-		
+
 		if (pointsCouleurPlusForte >= 24) {
 			Random r = new Random();
 			float point = (float) pointsCouleurPlusForte;
 			float pourcentage = (point * 100) / 44;
 			if (r.nextFloat() * 100 < pourcentage) {
-				System.out.println(couleurPlusForte);
+				System.out.println("couleur prise " + couleurPlusForte);
 				return couleurPlusForte;
 			} else {
-				System.out.println("non");
+				
+				System.out.println("non3");
 				return null;
 			}
-		}
-		else {
-			System.out.println("non");
+		} else {
+			System.out.println("non4");
 			return null;
 		}
 	}
 
 	public Carte choisirCarteAPoser(Pli pli, ArrayList<Carte> main) {
 		ArrayList<Carte> CartesAutorisees = new ArrayList<Carte>();
-		
-		for(Carte c:main){
-			if(pli.getTour().getJeu().estAutorise(pli, c, main) == true){
+
+		for (Carte c : main) {
+			if (pli.getTour().getJeu().estAutorise(pli, c, main) == true) {
 				CartesAutorisees.add(c);
 			}
 		}
-		if (this.niveau == "facile"){
-			if(pli.getEquipeGagnante() == this.joueurLie.getEquipe()){
-				if(pli.getTour().getCouleurAtout() == CartesAutorisees.get(0).getCouleur()){
+		if (this.niveau == "facile") {
+			if (pli.getEquipeGagnante() == this.joueurLie.getEquipe()) {
+				if (pli.getTour().getCouleurAtout() == CartesAutorisees.get(0).getCouleur()) {
 					return this.joueurLie.getMaxMain(true, CartesAutorisees);
-				}
-				else {
+				} else {
 					return this.joueurLie.getMaxMain(false, CartesAutorisees);
 				}
-			}
-			else{
-				if(pli.getTour().getCouleurAtout() == CartesAutorisees.get(0).getCouleur()){
+			} else {
+				if (pli.getTour().getCouleurAtout() == CartesAutorisees.get(0).getCouleur()) {
 					return this.joueurLie.getMinMain(true, CartesAutorisees);
-				}
-				else {
+				} else {
 					return this.joueurLie.getMinMain(false, CartesAutorisees);
 				}
 			}
-			
+
 		}
-		
+
 		return null;
 	}
 

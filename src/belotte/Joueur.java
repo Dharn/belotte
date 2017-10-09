@@ -187,7 +187,7 @@ public class Joueur {
 				mot = "non";
 			}
 			else {
-				mot = iaJoueur.choisirAtoutCouleur(main).toString();
+				mot = tempCouleur.toString();
 			}
 			
 		}
