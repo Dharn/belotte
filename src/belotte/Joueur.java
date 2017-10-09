@@ -13,7 +13,8 @@ public class Joueur {
 	private Joueur joueurSuivant;
 	private boolean aPritAtout = false;
 	private Ia iaJoueur = null;
-
+	
+	
 	public Ia getIaJoueur() {
 		return iaJoueur;
 	}
@@ -175,8 +176,8 @@ public class Joueur {
 
 	public Couleur choisirCouleurAtout() {
 		String mot = null;
-		System.out.println(this + ", indiquez la couleur a laquelle vous voulez prendre. N'indiquez rien sinon. ");
 		if (iaJoueur == null) {
+			System.out.println(this + ", indiquez la couleur a laquelle vous voulez prendre. N'indiquez rien sinon. ");
 			Scanner myScanner = new Scanner(System.in);
 			mot = myScanner.nextLine().toString();
 		} else {
@@ -185,7 +186,7 @@ public class Joueur {
 				mot = "non";
 			}
 			else {
-				mot = tempCouleur.toString();
+				mot = iaJoueur.choisirAtoutCouleur(main).toString();
 			}
 			
 		}
@@ -217,6 +218,44 @@ public class Joueur {
 			paquetCoupe.add(paquetACouper.get(idx_carte));
 		}
 		paquetCoupe = paquetACouper;
+	}
+	
+	public Carte getMaxMain(boolean estAtout, ArrayList<Carte> cartesAComparer){
+		Carte carteMax = cartesAComparer.get(0);
+		if(estAtout == true){
+			for (Carte c: cartesAComparer){
+				if (c.getValeurAtout() > carteMax.getValeurAtout()){
+					carteMax = c;
+				}
+			}
+		}
+		else {
+			for (Carte c: cartesAComparer){
+				if (c.getValeur() > carteMax.getValeur()){
+					carteMax = c;
+				}
+			}
+		}
+		return carteMax;
+	}
+	
+	public Carte getMinMain(boolean estAtout, ArrayList<Carte> cartesAComparer){
+		Carte carteMin = cartesAComparer.get(0);
+		if(estAtout == true){
+			for (Carte c: cartesAComparer){
+				if (c.getValeurAtout() < carteMin.getValeurAtout()){
+					carteMin = c;
+				}
+			}
+		}
+		else {
+			for (Carte c: cartesAComparer){
+				if (c.getValeur() < carteMin.getValeur()){
+					carteMin = c;
+				}
+			}
+		}
+		return carteMin;
 	}
 
 }
