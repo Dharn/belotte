@@ -5,6 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 public class Interface {
+	
 	private JLabel emptyLabel;
 	
 	public JLabel getEmptyLabel() {
@@ -15,6 +16,8 @@ public class Interface {
 		this.emptyLabel.setText(string);
 	}
 
+	
+	
 	public Interface(){
 		JFrame frame = new JFrame("FrameDemo");
 		
