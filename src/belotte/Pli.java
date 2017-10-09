@@ -65,7 +65,7 @@ public class Pli {
 		int point = 0;
 		Joueur joueurGagnant = maitreDuPli();
 		this.afficherPli();
-		System.out.println(joueurGagnant);
+		System.out.println(joueurGagnant + "remporte le pli");
 		
 		for (Equipe e : tour.getEquipes()) {
 			for (Joueur j : e.getListeJoueur()) {
@@ -76,9 +76,7 @@ public class Pli {
 		}
 
 		Carte c;
-		System.out.println("taille du pli "+cartesJouees.size());
 		for (int i = 0; i < 4; i++) {
-			System.out.println(cartesJouees.get(0));
 			c = cartesJouees.get(0);
 			if (c.getCouleur() == tour.getCouleurAtout()) {
 				point += c.getValeurAtout();
@@ -93,12 +91,10 @@ public class Pli {
 				cartesJouees.remove(c);
 			}
 		}
-		System.out.println(point);
 
 		// ajouter les point a l'équipe gagnante
 		if (equipeGagnante != null) {
 			equipeGagnante.setPoints(equipeGagnante.getPoints() + point);
-			System.out.println(equipeGagnante.getNom()+" : "+ equipeGagnante.getPoints());
 		}
 		else {
 		}

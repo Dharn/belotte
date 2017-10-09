@@ -175,8 +175,8 @@ public class Joueur {
 
 	public Couleur choisirCouleurAtout() {
 		String mot = null;
+		System.out.println(this + ", indiquez la couleur a laquelle vous voulez prendre. N'indiquez rien sinon. ");
 		if (iaJoueur == null) {
-			System.out.println(this + ", indiquez la couleur a laquelle vous voulez prendre. N'indiquez rien sinon. ");
 			Scanner myScanner = new Scanner(System.in);
 			mot = myScanner.nextLine().toString();
 		} else {
@@ -185,7 +185,7 @@ public class Joueur {
 				mot = "non";
 			}
 			else {
-				mot = iaJoueur.choisirAtoutCouleur(main).toString();
+				mot = tempCouleur.toString();
 			}
 			
 		}

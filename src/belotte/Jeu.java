@@ -77,16 +77,15 @@ public class Jeu {
 
 				couleurAtout = tourChoixAtout();
 				if (couleurAtout != null) { // si atout prit, fin du while
-					System.out.println(couleurAtout);
 					atoutEstPris = true;
 				}
 			}
 
-			// for (Equipe equipe : equipes) {
-			// for (Joueur joueur : equipe.getListeJoueur()) {
-			// joueur.afficherMain();
-			// }
-			// }
+			for (Equipe equipe : equipes) {
+				for (Joueur joueur : equipe.getListeJoueur()) {
+					joueur.afficherMain();
+				}
+			}
 
 			distribuerApresAtout();
 			new Tour(couleurAtout, this);
@@ -111,7 +110,6 @@ public class Jeu {
 
 	public Couleur tourChoixAtout() {
 		Joueur joueurChoix = joueurAQuiDistribuer;
-		System.out.println(paquetDeCarte.size());
 		System.out.println("La retourne : " + paquetDeCarte.get(0));
 		for (int i = 0; i < 4; i++) {
 			if (joueurChoix.choisirAtout(paquetDeCarte.get(0))) {
@@ -200,7 +198,6 @@ public class Jeu {
 	public void AfficherPaquetDeCarte() {
 		for (Carte carte : paquetDeCarte) {
 			System.out.println(carte);
-			System.out.println("salut");
 		}
 	}
 
@@ -213,7 +210,7 @@ public class Jeu {
 		paquetDeCarte.remove(0);
 	}
 
-	public boolean estAutorise(Pli pli, Carte carte,ArrayList<Carte> main) {
+	public boolean estAutorise(Pli pli, Carte carte, ArrayList<Carte> main) {
 		ArrayList<Carte> CartesJouees = new ArrayList<Carte>();
 		CartesJouees = pli.getCartesJouees();
 
@@ -226,30 +223,50 @@ public class Jeu {
 			return true;
 		} else if (carte.getCouleur() == premiereCarte.getCouleur()) {
 			boolean peutPoserAtout = true;
-			if (carte.getCouleur()== pli.getTour().getCouleurAtout()) {
+			if (carte.getCouleur() == pli.getTour().getCouleurAtout()) {
 				for (Carte carteMain : main) {
-						if ( pli.atoutMaxPli().getValeurAtout() > carte.getValeurAtout() && carteMain.getCouleur() == pli.getTour().getCouleurAtout() &&carteMain.getValeurAtout()> pli.atoutMaxPli().getValeurAtout()) { // si ma carte est plus faible, et j'ai un atout plus fort : peut pas poser
-							peutPoserAtout= false;
-							System.out.println("peut pas poser car atout dans pli:" + carteMain);
-						}
+					if (pli.atoutMaxPli().getValeurAtout() > carte.getValeurAtout()
+							&& carteMain.getCouleur() == pli.getTour().getCouleurAtout()
+							&& carteMain.getValeurAtout() > pli.atoutMaxPli().getValeurAtout()) {
+						// si ma carte est plus faible, et j'ai un atout plus fort : peut pas poser
+						peutPoserAtout = false;
+						System.out.println("peut pas poser car atout dans pli:" + carteMain);
+					}
 				}
 			}
 			return peutPoserAtout;
-			
+
 		} else if (carte.getCouleur() == pli.getTour().getCouleurAtout()) {
 			boolean peutPoserAtout = true;
-			System.out.println("atout :"+ pli.getTour().getCouleurAtout());
-			
+
 			for (Carte carteMain : main) {
-				if (carteMain.getCouleur() == premiereCarte.getCouleur() && carte != carteMain) { //si carte de la couleur demandée dans la main : peut pas poser
-				peutPoserAtout= false;
-				System.out.println("peut pas poser car couleur demander presente :" + carteMain);
+				if (carteMain.getCouleur() == premiereCarte.getCouleur() && carte != carteMain) {
+					// si carte de la couleur demandée dans la main : pet pas poser
+					peutPoserAtout = false;
+					System.out.println("peut pas poser car couleur demander presente :" + carteMain);
 				}
-				if (pli.atoutMaxPli() != null && pli.atoutMaxPli().getValeurAtout() > carte.getValeurAtout() && carteMain.getCouleur() == pli.getTour().getCouleurAtout() &&carteMain.getValeurAtout()> pli.atoutMaxPli().getValeurAtout()) { // si ma carte est plus faible, et j'ai un atout plus fort : peut pas poser
-					peutPoserAtout= false;
+				if (pli.atoutMaxPli() != null && pli.atoutMaxPli().getValeurAtout() > carte.getValeurAtout()
+						&& carteMain.getCouleur() == pli.getTour().getCouleurAtout()
+						&& carteMain.getValeurAtout() > pli.atoutMaxPli().getValeurAtout()) { // si
+																								// ma
+																								// carte
+																								// est
+																								// plus
+																								// faible,
+																								// et
+																								// j'ai
+																								// un
+																								// atout
+																								// plus
+																								// fort
+																								// :
+																								// peut
+																								// pas
+																								// poser
+					peutPoserAtout = false;
 					System.out.println("peut pas poser car atout dans pli:" + carteMain);
 				}
-				
+
 			}
 			if (peutPoserAtout) {
 				return peutPoserAtout;

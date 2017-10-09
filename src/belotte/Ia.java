@@ -18,17 +18,23 @@ public class Ia {
 
 	public String choisirAtout(ArrayList<Carte> main, Carte laRetourne) {
 
-		if (pointsMainSiAtout(main, laRetourne) >= 24) {
+		if (pointsMainSiAtout(main, laRetourne) >= 24 && pointsTotalMainSiAtout(main, laRetourne) >= 35) {
 			Random r = new Random();
 			float point = (float) pointsMainSiAtout(main, laRetourne);
 			float pourcentage = (point * 100) / 44;
-			if (r.nextFloat() * 100 < pourcentage) {
-				return " oui";
+			System.out.println("pourcent : "+pourcentage);
+			float rand = r.nextFloat()*100;
+			System.out.println("lancé : "+rand);
+			if (rand < pourcentage) {
+				System.out.println("oui");
+				return "oui";
 			} else {
+				System.out.println("non");
 				return "non";
 			}
 
 		} else {
+			System.out.println("non");
 			return "non";
 		}
 	}
@@ -66,17 +72,23 @@ public class Ia {
 			
 		}
 		
-		if (pointsCouleurPlusForte >= 24) {
+		if (pointsCouleurPlusForte >= 24 && pointsTotalMainSiAtout(main, couleurPlusForte) >= 35) {
 			Random r = new Random();
 			float point = (float) pointsCouleurPlusForte;
 			float pourcentage = (point * 100) / 44;
-			if (r.nextFloat() * 100 < pourcentage) {
+			System.out.println("pourcent : "+pourcentage);
+			float rand = r.nextFloat()*100;
+			System.out.println("lancé : "+rand);
+			if (rand < pourcentage) {
+				System.out.println(couleurPlusForte);
 				return couleurPlusForte;
 			} else {
+				System.out.println("non");
 				return null;
 			}
 		}
 		else {
+			System.out.println("non");
 			return null;
 		}
 	}
@@ -106,5 +118,29 @@ public class Ia {
 		}
 		return pts;
 	}
-
+	
+	private int pointsTotalMainSiAtout(ArrayList<Carte> main, Carte laRetourne) {
+		int pts = laRetourne.getValeurAtout();
+		for (Carte c : main) {
+			if (c.getCouleur() == laRetourne.getCouleur()) {
+				pts += c.getValeurAtout();
+			}
+			else {
+				pts+= c.getValeur();
+			}
+		}
+		return pts;
+	}
+	private int pointsTotalMainSiAtout(ArrayList<Carte> main, Couleur couleurAtout) {
+		int pts = 0;
+		for (Carte c : main) {
+			if (c.getCouleur() == couleurAtout) {
+				pts += c.getValeurAtout();
+			}
+			else {
+				pts+= c.getValeur();
+			}
+		}
+		return pts;
+	}
 }
