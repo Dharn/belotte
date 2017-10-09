@@ -16,6 +16,15 @@ public class Tour {
 	public Map<Couleur, ArrayList<Carte>> getCartesJouees() {
 		return cartesJouees;
 	}
+	
+	public Map<Couleur, ArrayList<Carte>> getCartesNonJouees(){
+		Map<Couleur,ArrayList<Carte>> cartesNonJouees = new HashMap<Couleur, ArrayList<Carte>>();
+		for(Carte c: this.paquetDeCarte){
+			
+			
+		}
+		this.cartesJouees.containsKey()
+	}
 
 	public void setCartesJouees(Map<Couleur, ArrayList<Carte>> cartesJouees) {
 		this.cartesJouees = cartesJouees;
