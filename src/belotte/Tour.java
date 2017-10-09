@@ -88,8 +88,22 @@ public class Tour {
 		for (int i = 0; i < 8; i++) {
 			
 			Pli pli = new Pli(this);
+			
 			if (i==7) {
 				pli.getEquipeGagnante().setPoints(pli.getEquipeGagnante().getPoints()+10);
+				
+				pli.calculerPliEtAjouterPoint();
+				for (Carte carte : pli.getCartesJouees()) {
+					carte.setPossesseur(null);
+					paquetDeCarte.add(carte);
+				}
+			}
+			else {
+				pli.calculerPliEtAjouterPoint();
+				for (Carte carte : pli.getCartesJouees()) {
+					carte.setPossesseur(null);
+					paquetDeCarte.add(carte);
+				}
 			}
 			
 		}

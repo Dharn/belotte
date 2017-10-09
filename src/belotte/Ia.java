@@ -11,9 +11,10 @@ public class Ia {
 	private String niveau;
 	private ArrayList<Carte> cartesJouees;
 
-	public Ia(Joueur joueurLie) {
+	public Ia(Joueur joueurLie, String niveau) {
 		this.joueurLie = joueurLie;
 		joueurLie.setIaJoueur(this);
+		this.niveau = niveau;
 	}
 
 	public String choisirAtout(ArrayList<Carte> main, Carte laRetourne) {
@@ -70,6 +71,7 @@ public class Ia {
 			float point = (float) pointsCouleurPlusForte;
 			float pourcentage = (point * 100) / 44;
 			if (r.nextFloat() * 100 < pourcentage) {
+				System.out.println("couleur atout : " + couleurPlusForte);
 				return couleurPlusForte;
 			} else {
 				return null;

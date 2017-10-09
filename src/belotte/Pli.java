@@ -11,21 +11,21 @@ public class Pli {
 	public Carte atoutMaxPli(){
 		ArrayList<Carte> atoutsPli = new ArrayList<Carte>();
 		Couleur couleurAtout = tour.getCouleurAtout();
-		Carte atoutMax = null; 
+		Carte plusFortAtout = null; 
 		for(Carte c: cartesJouees){
 			if(c.getCouleur() == couleurAtout){
 				atoutsPli.add(c);
 			}
 		}
 		if(atoutsPli.size() > 0 ){
-			Carte plusFortAtout = atoutsPli.get(0);
+			plusFortAtout = atoutsPli.get(0);
 			for(Carte c: atoutsPli){
 				if(c.getValeurAtout() > plusFortAtout.getValeurAtout()){
 					plusFortAtout = c;
 				}
 			}
 		}
-		return atoutMax;
+		return plusFortAtout;
 	}
  	public Equipe getEquipeGagnante() {
  		if (maitreDuPli()!= null) {
@@ -59,11 +59,7 @@ public class Pli {
 																	// joueur
 																	// suivant
 		}
-		calculerPliEtAjouterPoint();
-		for (Carte carte : cartesJouees) {
-			carte.setPossesseur(null);
-			tour.getPaquetDeCarte().add(carte);
-		}
+		
 	}
 
 	public void calculerPliEtAjouterPoint() {
