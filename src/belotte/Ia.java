@@ -131,7 +131,7 @@ public class Ia {
 				}
 			}
 		}
-		
+		return CartesAutorisees.get(0);
 	}
 
 	private int pointsMainSiAtout(ArrayList<Carte> main, Carte laRetourne) {
