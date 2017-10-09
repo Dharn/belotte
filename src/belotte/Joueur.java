@@ -180,7 +180,14 @@ public class Joueur {
 			Scanner myScanner = new Scanner(System.in);
 			mot = myScanner.nextLine().toString();
 		} else {
-			mot = iaJoueur.choisirAtoutCouleur(main).toString();
+			Couleur tempCouleur= iaJoueur.choisirAtoutCouleur(main);
+			if (tempCouleur == null) {
+				mot = "non";
+			}
+			else {
+				mot = iaJoueur.choisirAtoutCouleur(main).toString();
+			}
+			
 		}
 
 		for (Couleur couleur : Couleur.values()) {
