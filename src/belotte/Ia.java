@@ -6,6 +6,8 @@ import java.util.Random;
 public class Ia {
 
 	private Joueur joueurLie;
+	private String niveau;
+	private ArrayList<Carte> cartesJouees;
 
 	public Ia(Joueur joueurLie) {
 		this.joueurLie = joueurLie;
@@ -33,7 +35,19 @@ public class Ia {
 		return null;
 	}
 
-	public Carte choisirCarteAPoser(Pli pli, ArrayList<Carte> main) {
+	public Carte choisirCarteAPoser(Pli pli, ArrayList<Carte> main, String niveau) {
+		ArrayList<Carte> CartesAutorisees = new ArrayList<Carte>();
+		
+		for(Carte c:main){
+			if(pli.getTour().getJeu().estAutorise(pli, c, main) == true){
+				CartesAutorisees.add(c);
+			}
+		}
+		if (niveau == "facile"){
+			if(pli.getEquipeGagnante() == this.joueurLie.getEquipe());
+			
+		}
+		
 		return null;
 	}
 
