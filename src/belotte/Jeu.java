@@ -81,13 +81,15 @@ public class Jeu {
 				}
 			}
 
+			
+
+			distribuerApresAtout();
+			
 			for (Equipe equipe : equipes) {
 				for (Joueur joueur : equipe.getListeJoueur()) {
 					joueur.afficherMain();
 				}
 			}
-
-			distribuerApresAtout();
 			new Tour(couleurAtout, this);
 			joueurAQuiDistribuer = joueurAQuiDistribuer.getJoueurSuivant();
 			joueurQuiDistribue = joueurQuiDistribue.getJoueurSuivant();

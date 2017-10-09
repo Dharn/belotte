@@ -1,6 +1,8 @@
 package belotte;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Tour {
 	private Couleur couleurAtout;
@@ -8,7 +10,16 @@ public class Tour {
 	private ArrayList<Equipe> equipes = new ArrayList<>();
 	private Joueur joueurAQuiDistribuer;
 	private Jeu jeu;
+	private Map<Couleur,ArrayList<Carte>> cartesJouees = new HashMap<Couleur, ArrayList<Carte>>();
 	
+
+	public Map<Couleur, ArrayList<Carte>> getCartesJouees() {
+		return cartesJouees;
+	}
+
+	public void setCartesJouees(Map<Couleur, ArrayList<Carte>> cartesJouees) {
+		this.cartesJouees = cartesJouees;
+	}
 
 	public Jeu getJeu() {
 		return jeu;
@@ -52,6 +63,10 @@ public class Tour {
 		this.paquetDeCarte = jeu.getPaquetDeCarte();
 		this.equipes = jeu.getEquipes();
 		this.joueurAQuiDistribuer= jeu.getJoueurAQuiDistribuer();
+		cartesJouees.put(Couleur.carreau, new ArrayList<Carte>());
+		cartesJouees.put(Couleur.coeur, new ArrayList<Carte>());
+		cartesJouees.put(Couleur.pique, new ArrayList<Carte>());
+		cartesJouees.put(Couleur.trèfle, new ArrayList<Carte>());
 		jouerTour();
 		
 	}

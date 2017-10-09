@@ -80,6 +80,7 @@ public class Pli {
 			c = cartesJouees.get(0);
 			if (c.getCouleur() == tour.getCouleurAtout()) {
 				point += c.getValeurAtout();
+				tour.getCartesJouees().get(c.getCouleur()).add(c);
 				tour.getPaquetDeCarte().add(c);
 				c.setPossesseur(null);
 				cartesJouees.remove(c);
