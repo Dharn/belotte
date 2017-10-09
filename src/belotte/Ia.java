@@ -23,7 +23,7 @@ public class Ia {
 			float point = (float) pointsMainSiAtout(main, laRetourne);
 			float pourcentage = (point * 100) / 44;
 			if (r.nextFloat() * 100 < pourcentage) {
-				return " oui";
+				return "oui";
 			} else {
 				return "non";
 			}
