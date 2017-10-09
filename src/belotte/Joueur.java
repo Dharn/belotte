@@ -181,12 +181,13 @@ public class Joueur {
 			Scanner myScanner = new Scanner(System.in);
 			mot = myScanner.nextLine().toString();
 		} else {
+			System.out.println(this + ", indiquez la couleur a laquelle vous voulez prendre. N'indiquez rien sinon. ");
 			Couleur tempCouleur= iaJoueur.choisirAtoutCouleur(main);
 			if (tempCouleur == null) {
 				mot = "non";
 			}
 			else {
-				mot = iaJoueur.choisirAtoutCouleur(main).toString();
+				mot = tempCouleur.toString();
 			}
 			
 		}
