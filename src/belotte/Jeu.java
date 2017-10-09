@@ -259,7 +259,7 @@ public class Jeu {
 				if (carteMain.getCouleur() == premiereCarte.getCouleur() && carte != carteMain) {
 					// si carte de la couleur demandée dans la main : pet pas poser
 					peutPoserAtout = false;
-					System.out.println("peut pas poser car couleur demander presente :" + carteMain);
+					//System.out.println("peut pas poser car couleur demander presente :" + carteMain);
 				}
 				if (pli.atoutMaxPli() != null && pli.atoutMaxPli().getValeurAtout() > carte.getValeurAtout()
 						&& carteMain.getCouleur() == pli.getTour().getCouleurAtout()
@@ -280,7 +280,7 @@ public class Jeu {
 																								// pas
 																								// poser
 					peutPoserAtout = false;
-					System.out.println("peut pas poser car atout dans pli:" + carteMain);
+					//System.out.println("peut pas poser car atout dans pli:" + carteMain);
 				}
 
 			}

@@ -17,7 +17,7 @@ public class Pli {
 				atoutsPli.add(c);
 			}
 		}
-		if(atoutsPli != null){
+		if(atoutsPli.size() > 0 ){
 			Carte plusFortAtout = atoutsPli.get(0);
 			for(Carte c: atoutsPli){
 				if(c.getValeurAtout() > plusFortAtout.getValeurAtout()){
