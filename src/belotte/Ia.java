@@ -23,12 +23,16 @@ public class Ia {
 			float point = (float) pointsMainSiAtout(main, laRetourne);
 			float pourcentage = (point * 100) / 44;
 			if (r.nextFloat() * 100 < pourcentage) {
-				return " oui";
+				System.out.println("oui");
+				return "oui";
 			} else {
+				
+				System.out.println("non");
 				return "non";
 			}
 
 		} else {
+			System.out.println("non");
 			return "non";
 		}
 	}
@@ -41,7 +45,6 @@ public class Ia {
 		couleursmain.put(Couleur.coeur, new ArrayList<Carte>());
 		couleursmain.put(Couleur.pique, new ArrayList<Carte>());
 		couleursmain.put(Couleur.trèfle, new ArrayList<Carte>());
-
 		for (Carte carte : main) {
 			for (Couleur couleur : Couleur.values()) {
 				if (carte.getCouleur() == couleur) {
@@ -54,13 +57,16 @@ public class Ia {
 		int pointsCouleurPlusForte = 0;
 
 		for (Couleur couleur : Couleur.values()) {
-			Carte couleuretourne = couleursmain.get(couleur).get(0);
-			couleursmain.get(couleur).remove(0);
-			int points = pointsMainSiAtout(couleursmain.get(couleur), couleuretourne);
-			if (points > pointsCouleurPlusForte) {
-				pointsCouleurPlusForte = points;
-				couleurPlusForte = couleur;
+			if (couleursmain.get(couleur).size()>0) {
+				Carte couleuretourne = couleursmain.get(couleur).get(0);
+				couleursmain.get(couleur).remove(0);
+				int points = pointsMainSiAtout(couleursmain.get(couleur), couleuretourne);
+				if (points > pointsCouleurPlusForte) {
+					pointsCouleurPlusForte = points;
+					couleurPlusForte = couleur;
+				}
 			}
+			
 		}
 		
 		if (pointsCouleurPlusForte >= 24) {
@@ -68,12 +74,15 @@ public class Ia {
 			float point = (float) pointsCouleurPlusForte;
 			float pourcentage = (point * 100) / 44;
 			if (r.nextFloat() * 100 < pourcentage) {
+				System.out.println(couleurPlusForte);
 				return couleurPlusForte;
 			} else {
+				System.out.println("non");
 				return null;
 			}
 		}
 		else {
+			System.out.println("non");
 			return null;
 		}
 	}
