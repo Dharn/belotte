@@ -13,8 +13,8 @@ public class Belotte {
 
 		new Ia(j1,"facile");
 		new Ia(j2,"facile");
-		new Ia(j3,"facile");
-		new Ia(j4,"facile");
+		new Ia(j3,"difficile");
+		new Ia(j4,"difficile");
 		//Interface interf = new Interface();
 		//interf.setEmptyLabel("lol");
 		new Jeu(e1, e2);

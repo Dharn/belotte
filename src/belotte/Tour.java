@@ -19,6 +19,10 @@ public class Tour {
 	
 	public Map<Couleur, ArrayList<Carte>> getCartesNonJouees(){
 		Map<Couleur,ArrayList<Carte>> cartesNonJouees = new HashMap<Couleur, ArrayList<Carte>>();
+		cartesNonJouees.put(Couleur.carreau, new ArrayList<Carte>());
+		cartesNonJouees.put(Couleur.coeur, new ArrayList<Carte>());
+		cartesNonJouees.put(Couleur.pique, new ArrayList<Carte>());
+		cartesNonJouees.put(Couleur.trèfle, new ArrayList<Carte>());
 		for(Carte c: jeu.getCarteDeJeu()){
 			if(cartesJouees.containsValue(c) == false){
 				cartesNonJouees.get(c.getCouleur()).add(c);
