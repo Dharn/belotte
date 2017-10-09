@@ -12,13 +12,10 @@ public class Belotte {
 		Equipe e2 = new Equipe("yeah", j3, j4);
 
 		new Ia(j1,"facile");
-		new Ia(j2,"facile");
 		Interface interf = new Interface();
 		interf.setEmptyLabel("lol");
 		new Ia(j3,"difficile");
 		new Ia(j4,"difficile");
-		//Interface interf = new Interface();
-		//interf.setEmptyLabel("lol");
 		new Jeu(e1, e2);
 
 	}
