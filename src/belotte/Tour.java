@@ -19,8 +19,10 @@ public class Tour {
 	
 	public Map<Couleur, ArrayList<Carte>> getCartesNonJouees(){
 		Map<Couleur,ArrayList<Carte>> cartesNonJouees = new HashMap<Couleur, ArrayList<Carte>>();
-		for(Carte c: this.paquetDeCarte){
-			
+		for(Carte c: jeu.getCarteDeJeu()){
+			if(cartesJouees.containsValue(c) == true){
+				cartesNonJouees
+			}
 			
 		}
 		this.cartesJouees.containsKey()
