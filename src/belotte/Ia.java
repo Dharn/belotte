@@ -23,8 +23,13 @@ public class Ia {
 			return null;
 		}
 		
-		private int pointsMainSiAtout(Couleur atout){
-			
-			return 0;
+		private int pointsMainSiAtout(ArrayList<Carte> main, Couleur atout, Carte laRetourne){
+			int pts = laRetourne.getValeurAtout();
+			for(Carte c: main){
+				if (c.getCouleur() == atout){
+					pts += c.getValeurAtout();
+				}
+			}
+			return pts;
 		}
 }

@@ -17,14 +17,13 @@ public class Pli {
 				atoutsPli.add(c);
 			}
 		}
-		if(atoutsPli.size()>0){
-			atoutMax = atoutsPli.get(0);
+		if(atoutsPli != null){
+			Carte plusFortAtout = atoutsPli.get(0);
 			for(Carte c: atoutsPli){
-				if(c.getValeurAtout() > atoutMax.getValeurAtout()){
-					atoutMax = c;
+				if(c.getValeurAtout() > plusFortAtout.getValeurAtout()){
+					plusFortAtout = c;
 				}
 			}
-			return atoutMax;
 		}
 		return atoutMax;
 	}
@@ -54,7 +53,6 @@ public class Pli {
 																	// joueur
 																	// suivant
 		}
-		premierJoueurPli = maitreDuPli();
 		calculerPliEtAjouterPoint();
 		for (Carte carte : cartesJouees) {
 			carte.setPossesseur(null);
