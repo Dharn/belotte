@@ -52,13 +52,16 @@ public class Ia {
 		int pointsCouleurPlusForte = 0;
 
 		for (Couleur couleur : Couleur.values()) {
-			Carte couleuretourne = couleursmain.get(couleur).get(0);
-			couleursmain.get(couleur).remove(0);
-			int points = pointsMainSiAtout(couleursmain.get(couleur), couleuretourne);
-			if (points > pointsCouleurPlusForte) {
-				pointsCouleurPlusForte = points;
-				couleurPlusForte = couleur;
+			if (couleursmain.get(couleur).size()!=0) {
+				Carte couleuretourne = couleursmain.get(couleur).get(0);
+				couleursmain.get(couleur).remove(0);
+				int points = pointsMainSiAtout(couleursmain.get(couleur), couleuretourne);
+				if (points > pointsCouleurPlusForte) {
+					pointsCouleurPlusForte = points;
+					couleurPlusForte = couleur;
+				}
 			}
+			
 		}
 		
 		if (pointsCouleurPlusForte >= 24) {
