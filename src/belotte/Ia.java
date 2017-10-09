@@ -78,7 +78,7 @@ public class Ia {
 		}
 	}
 
-	public Carte choisirCarteAPoser(Pli pli, ArrayList<Carte> main, String niveau) {
+	public Carte choisirCarteAPoser(Pli pli, ArrayList<Carte> main) {
 		ArrayList<Carte> CartesAutorisees = new ArrayList<Carte>();
 		
 		for(Carte c:main){
@@ -86,7 +86,7 @@ public class Ia {
 				CartesAutorisees.add(c);
 			}
 		}
-		if (niveau == "facile"){
+		if (this.niveau == "facile"){
 			if(pli.getEquipeGagnante() == this.joueurLie.getEquipe());
 			
 		}
