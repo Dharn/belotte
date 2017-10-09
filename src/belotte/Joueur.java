@@ -156,14 +156,14 @@ public class Joueur {
 		// System.out.println("nb carte : "+ main.size());
 	}
 
-	public boolean choisirAtout() {
+	public boolean choisirAtout(Carte laRetourne) {
 		System.out.println(this + ", voulez vous prendre atout ? ");
 		String mot = null;
 		if (iaJoueur == null) {
 			Scanner myScanner = new Scanner(System.in);
 			mot = myScanner.nextLine().toString();
 		} else {
-			mot = iaJoueur.choisirAtout(main).toString();
+			mot = iaJoueur.choisirAtout(main, laRetourne).toString();
 		}
 
 		if (mot.toLowerCase().compareTo("oui") == 0 || mot.toLowerCase().compareTo("yes") == 0) {

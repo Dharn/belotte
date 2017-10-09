@@ -114,7 +114,7 @@ public class Jeu {
 		System.out.println(paquetDeCarte.size());
 		System.out.println("La retourne : " + paquetDeCarte.get(0));
 		for (int i = 0; i < 4; i++) {
-			if (joueurChoix.choisirAtout()) {
+			if (joueurChoix.choisirAtout(paquetDeCarte.get(0))) {
 				Couleur couleurAtout = paquetDeCarte.get(0).getCouleur();
 				joueurChoix.donnerCarte(paquetDeCarte.get(0));
 				paquetDeCarte.remove(0);
