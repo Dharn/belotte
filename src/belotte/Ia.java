@@ -23,16 +23,12 @@ public class Ia {
 			float point = (float) pointsMainSiAtout(main, laRetourne);
 			float pourcentage = (point * 100) / 44;
 			if (r.nextFloat() * 100 < pourcentage) {
-				System.out.println("oui");
-				return "oui";
+				return " oui";
 			} else {
-
-				System.out.println("non1");
 				return "non";
 			}
 
 		} else {
-			System.out.println("non2");
 			return "non";
 		}
 	}
@@ -45,6 +41,7 @@ public class Ia {
 		couleursmain.put(Couleur.coeur, new ArrayList<Carte>());
 		couleursmain.put(Couleur.pique, new ArrayList<Carte>());
 		couleursmain.put(Couleur.trèfle, new ArrayList<Carte>());
+
 		for (Carte carte : main) {
 			for (Couleur couleur : Couleur.values()) {
 				if (carte.getCouleur() == couleur) {
@@ -57,67 +54,57 @@ public class Ia {
 		int pointsCouleurPlusForte = 0;
 
 		for (Couleur couleur : Couleur.values()) {
-			if (couleursmain.get(couleur).size() > 0) {
-				Carte couleuretourne = couleursmain.get(couleur).get(0);
-				couleursmain.get(couleur).remove(0);
-				int points = pointsMainSiAtout(couleursmain.get(couleur), couleuretourne);
-				if (points > pointsCouleurPlusForte) {
-					pointsCouleurPlusForte = points;
-					couleurPlusForte = couleur;
-				}
+			Carte couleuretourne = couleursmain.get(couleur).get(0);
+			couleursmain.get(couleur).remove(0);
+			int points = pointsMainSiAtout(couleursmain.get(couleur), couleuretourne);
+			if (points > pointsCouleurPlusForte) {
+				pointsCouleurPlusForte = points;
+				couleurPlusForte = couleur;
 			}
-
 		}
-
+		
 		if (pointsCouleurPlusForte >= 24) {
 			Random r = new Random();
 			float point = (float) pointsCouleurPlusForte;
 			float pourcentage = (point * 100) / 44;
 			if (r.nextFloat() * 100 < pourcentage) {
-				System.out.println("couleur prise " + couleurPlusForte);
 				return couleurPlusForte;
 			} else {
-				
-				System.out.println("non3");
 				return null;
 			}
-		} else {
-			System.out.println("non4");
+		}
+		else {
 			return null;
 		}
 	}
 
 	public Carte choisirCarteAPoser(Pli pli, ArrayList<Carte> main) {
 		ArrayList<Carte> CartesAutorisees = new ArrayList<Carte>();
-
-		for (Carte c : main) {
-			if (pli.getTour().getJeu().estAutorise(pli, c, main) == true) {
+		
+		for(Carte c:main){
+			if(pli.getTour().getJeu().estAutorise(pli, c, main) == true){
 				CartesAutorisees.add(c);
 			}
 		}
-<<<<<<< HEAD
 		if (this.niveau == "facile" && pli.getCartesJouees().size() != 0){
 			if(pli.getEquipeGagnante() == this.joueurLie.getEquipe()){
 				if(pli.getTour().getCouleurAtout() == CartesAutorisees.get(0).getCouleur()){
-=======
-		if (this.niveau == "facile") {
-			if (pli.getEquipeGagnante() == this.joueurLie.getEquipe()) {
-				if (pli.getTour().getCouleurAtout() == CartesAutorisees.get(0).getCouleur()) {
->>>>>>> 792542d13150b14019f81c55309f69f3f553a252
 					return this.joueurLie.getMaxMain(true, CartesAutorisees);
-				} else {
+				}
+				else {
 					return this.joueurLie.getMaxMain(false, CartesAutorisees);
 				}
-			} else {
-				if (pli.getTour().getCouleurAtout() == CartesAutorisees.get(0).getCouleur()) {
+			}
+			else{
+				if(pli.getTour().getCouleurAtout() == CartesAutorisees.get(0).getCouleur()){
 					return this.joueurLie.getMinMain(true, CartesAutorisees);
-				} else {
+				}
+				else {
 					return this.joueurLie.getMinMain(false, CartesAutorisees);
 				}
 			}
-
+			
 		}
-<<<<<<< HEAD
 		else if(this.niveau == "facile" && pli.getCartesJouees().size() == 0){
 			for(Carte c : CartesAutorisees){
 				if (c.getCouleur() != pli.getTour().getCouleurAtout() && c.getNom() == "AS"){
@@ -145,10 +132,6 @@ public class Ia {
 			}
 		}
 		return CartesAutorisees.get(0);
-=======
-
-		return null;
->>>>>>> 792542d13150b14019f81c55309f69f3f553a252
 	}
 
 	private int pointsMainSiAtout(ArrayList<Carte> main, Carte laRetourne) {
